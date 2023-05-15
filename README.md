@@ -1,2 +1,2 @@
 # rn-chat
-Simple react native chat using firebase
+Simple react native chat using firebase and Expo

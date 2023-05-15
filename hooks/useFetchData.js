@@ -8,7 +8,7 @@ export const useFetchData = () => {
   const fetchMessages = useCallback(async (size) => {
     const first = query(
       collection(db, "messages"),
-      orderBy("timestamp", "desc"),
+      orderBy("timestamp", "desc"), // use desc sort to take last N items
       limit(size)
     );
     let documentSnapshots = await getDocs(first);
@@ -19,8 +19,8 @@ export const useFetchData = () => {
         text: doc.data().text,
         timestamp: doc.data().timestamp,
       }))
-      .sort((a, b) => a.timestamp.valueOf() - b.timestamp.valueOf());
-    console.log({ size });
+      .sort((a, b) => a.timestamp.valueOf() - b.timestamp.valueOf()); // sort items by asc
+
     setResponse(list);
   }, []);
 
